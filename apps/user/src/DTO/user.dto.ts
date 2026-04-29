@@ -1,0 +1,35 @@
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
+import { Type } from 'class-transformer';
+
+export class UserDto {
+  @IsNotEmpty()
+  @IsString()
+  readonly username: string;
+
+  @IsNotEmpty()
+  @IsEmail()
+  readonly email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(6)
+  readonly password: string;
+
+  @IsOptional()
+  @IsString()
+  readonly firstName?: string;
+
+  @IsOptional()
+  @IsString()
+  readonly lastName?: string;
+
+  @IsOptional()
+  @Type(() => Date)
+  readonly birthDate?: Date;
+}
